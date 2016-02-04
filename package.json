@@ -1,0 +1,39 @@
+{
+  "name": "ng-students",
+  "version": "0.0.1",
+  "description": "aplicacion sistema de estudiantes en angularjs",
+  "main": "app.js",
+  "dependencies": {
+    "angular": "^1.4.9",
+    "flat-ui": "^2.1.1"
+  },
+  "devDependencies": {
+    "jasmine-core": "2.4.1",
+    "jshint": "2.9.1",
+    "karma": "0.13.19",
+    "karma-browserify": "5.0.1",
+    "karma-chrome-launcher": "0.2.2",
+    "karma-jasmine": "0.3.7",
+    "karma-jshint-preprocessor": "0.0.6",
+    "watchify": "3.7.0"
+  },
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackendstudios/ng-students.git"
+  },
+  "keywords": [
+    "ng-students",
+    "angular",
+    "angularjs",
+    "angular2"
+  ],
+  "author": "blackend",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blackendstudios/ng-students/issues"
+  },
+  "homepage": "https://github.com/blackendstudios/ng-students#readme"
+}
