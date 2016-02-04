@@ -6,11 +6,66 @@
    <link rel="stylesheet" href="node_modules/flat-ui/bootstrap/css/bootstrap.css">
    <link rel="stylesheet" href="node_modules/flat-ui/css/flat-ui.css">
 </head>
-<body class="container">
+<body class="container" ng-controller="AppController as ctrl">
 
-<h1>NG-students</h1>
+<div class="col-xs-12">
+   <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-8" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="#">Blackend Studios</a></div>
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+            <ul class="nav navbar-nav">
+               <li class="active"><a href="#">Home</a></li>
+               <li><a href="#">Link</a></li>
+               <li><a href="#">Link</a></li>
+            </ul>
+         </div>
+      </div>
+
+   </nav>
+</div>
+
+<div class="page-header">
+   <h1>NG-Students <small> made with Angularjs</small></h1>
+</div>
+
+<table class="table table-hover">
+   <thead>
+   <tr>
+      <th>Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Job Title</th>
+      <th>Grade</th>
+      <th>&nbsp;</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr ng-repeat="student in ctrl.students track by $index">
+      <th scope="row">{{student.id}}</th>
+      <td>{{student.first_name}}</td>
+      <td>{{student.last_name}}</td>
+      <td>{{student.gender}}</td>
+      <td>{{student.email}}</td>
+      <td>{{student.job_title}}</td>
+      <td>{{student.grade}}</td>
+      <td>
+         <span class="fui-new"></span>
+         <span class="fui-cross"></span>
+      </td>
+   </tr>
+
+   </tbody>
+</table>
 
 <script src="node_modules/angular/angular.js"></script>
 <script src="components/app.js"></script>
+<script src="components/appController.js"></script>
+<script src="components/appFactory.js"></script>
 </body>
 </html>
