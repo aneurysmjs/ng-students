@@ -1,14 +1,14 @@
 (function () {
    'use strict';
 
-   angular.module('app').controller('AppController', AppController);
+   angular.module('students').controller('StudentsController', StudentsController);
 
-   AppController.$inject = ['appFactory'];
+   StudentsController.$inject = ['studentsFactory'];
 
-   function AppController(appFactory) {
+   function StudentsController(studentsFactory) {
       var self = this;
 
-      appFactory.retrieveData().then(function (response) {
+      studentsFactory.retrieveData().then(function (response) {
          self.students = response;
       }, function (error) {
 

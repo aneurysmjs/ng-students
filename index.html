@@ -12,19 +12,16 @@
    <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-8" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="#">Blackend Studios</a></div>
+            <a class="navbar-brand">Blackend Studios</a>
+         </div>
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
             <ul class="nav navbar-nav">
-               <li class="active"><a href="#">Home</a></li>
-               <li><a href="#">Link</a></li>
+               <li><a href="#">Home</a></li>
+               <li><a ui-sref="students">Estudiantes</a></li>
                <li><a href="#">Link</a></li>
             </ul>
          </div>
       </div>
-
    </nav>
 </div>
 
@@ -32,40 +29,19 @@
    <h1>NG-Students <small> made with Angularjs</small></h1>
 </div>
 
-<table class="table table-hover">
-   <thead>
-   <tr>
-      <th>Id</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Gender</th>
-      <th>Email</th>
-      <th>Job Title</th>
-      <th>Grade</th>
-      <th>&nbsp;</th>
-   </tr>
-   </thead>
-   <tbody>
-   <tr ng-repeat="student in ctrl.students track by $index">
-      <th scope="row">{{student.id}}</th>
-      <td>{{student.first_name}}</td>
-      <td>{{student.last_name}}</td>
-      <td>{{student.gender}}</td>
-      <td>{{student.email}}</td>
-      <td>{{student.job_title}}</td>
-      <td>{{student.grade}}</td>
-      <td>
-         <span class="fui-new"></span>
-         <span class="fui-cross" ng-click="ctrl.deleteStudent(student)"></span>
-      </td>
-   </tr>
-
-   </tbody>
-</table>
+<ui-view></ui-view>
 
 <script src="node_modules/angular/angular.js"></script>
+<script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="components/app.js"></script>
-<script src="components/appController.js"></script>
-<script src="components/appFactory.js"></script>
+<script src="components/app-controller.js"></script>
+<script src="components/app-factory.js"></script>
+
+<script src="components/students/students.js"></script>
+<script src="components/students/students-routes.js"></script>
+<script src="components/students/students-controller.js"></script>
+<script src="components/students/students-factory.js"></script>
+
+
 </body>
 </html>
