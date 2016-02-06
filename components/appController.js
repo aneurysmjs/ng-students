@@ -14,6 +14,11 @@
 
       });
 
+      self.deleteStudent = function (student) {
+         var index = self.students.indexOf(student);
+         self.students.splice(index, 1);
+      };
+
    }
 
 }());
