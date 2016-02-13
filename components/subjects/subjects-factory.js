@@ -17,8 +17,10 @@
          return $q(function (resolve, reject) {
             $http({
                method: 'POST',
-               url: API_URL + '/api/v1/subjects',
-               data: obj
+               url: API_URL + '/subjects',
+               data: {
+                  subject: obj
+               }
             }).then(function (promise) {
                resolve(promise.data);
             }, function (reason) {
@@ -31,7 +33,7 @@
          return $q(function (resolve, reject) {
             $http({
                method: 'GET',
-               url: API_URL + '/api/v1/subjects' + id + '.json'
+               url: API_URL + '/subjects' + id + '.json'
             }).then(function (promise) {
                resolve(promise.data);
             }, function (reason) {
@@ -44,7 +46,7 @@
          return $q(function (resolve, reject) {
             $http({
                method: 'GET',
-               url: API_URL + '/api/v1/subjects.json'
+               url: API_URL + '/subjects.json'
             }).then(function (promise) {
                resolve(promise.data);
             }, function (reason) {
