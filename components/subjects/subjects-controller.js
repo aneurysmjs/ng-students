@@ -31,6 +31,7 @@
             subjectsFactory.updateSubject(self.subject, self.subject.id).then(function (response) {
                init();
                self.notification = response.notification;
+               self.subject = {};
                $timeout(function () {
                   self.notification = null;
                }, 1300);
@@ -56,6 +57,7 @@
       function deleteSubject(student) {
          var index = self.subjects.indexOf(student);
          subjectsFactory.deleteSubject(student.id).then(function (response) {
+            self.subject = {};
             self.notification = response.notification;
             $timeout(function () {
                self.notification = null;
@@ -66,7 +68,7 @@
 
       function calcNotes(subject) {
          subjectsFactory.calcNotes(subject).then(function (result) {
-            self.subject.average = result;
+            self.subject.exam_average = result;
          });
       }
 

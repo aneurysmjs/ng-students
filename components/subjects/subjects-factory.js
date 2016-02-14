@@ -89,8 +89,6 @@
 
       function calcNotes(subject) {
          return $q(function (resolve, reject) {
-            console.log('subject');
-            console.log(subject);
             var exam1 = parseFloat(subject.exam_1) || 0,
                 exam2 = parseFloat(subject.exam_2) || 0,
                 exam3 = parseFloat(subject.exam_3) || 0;
