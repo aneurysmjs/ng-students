@@ -1,5 +1,5 @@
 describe('Testing Students Routes', function () {
-   var $rootScope, $state, $httpBackend, $templateCache, state = 'students';
+   var $rootScope, $state, $httpBackend, $templateCache, state;
 
    beforeEach(module('ui.router'));
 
@@ -9,9 +9,10 @@ describe('Testing Students Routes', function () {
       inject(function ($injector) {
          $rootScope = $injector.get('$rootScope');
          $state = $injector.get('$state');
+         state = $state.get('students');
          $httpBackend = $injector.get('$httpBackend');
 
-         $httpBackend.when('GET', 'components/students/students.html').respond('home');
+         $httpBackend.when('GET', 'components/students/students.html').respond('students');
 
          $templateCache = $injector.get('$templateCache');
          $templateCache.put('students.html', '');
@@ -19,14 +20,16 @@ describe('Testing Students Routes', function () {
 
    });
 
-   it('should be in \'students\' state', function () {
+   afterEach(function () {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+   });
 
-      console.log('$state');
-      console.log($state.current);
-      $state.go(state);
+   it('should be in \'students\' state', function () {
+      $state.go(state.name);
       //$rootScope.$digest();
-      expect($state.current.name).toBe(state);
-      //expect($state.current.name).toBe('students');
+      $httpBackend.flush();
+      expect($state.current.name).toBe(state.name);
    });
 
 
