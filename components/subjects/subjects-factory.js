@@ -10,7 +10,10 @@
       return {
          createSubject: createSubject,
          retrieveSubject: retrieveSubject,
-         retrieveSubjects: retrieveSubjects
+         retrieveSubjects: retrieveSubjects,
+         updateSubject: updateSubject,
+         deleteSubject: deleteSubject,
+         calcNotes: calcNotes
       };
 
       function createSubject(obj) {
@@ -53,6 +56,53 @@
                reject(reason);
             });
          });
+      }
+
+      function updateSubject(obj, id) {
+         return $q(function (resolve, reject) {
+            $http({
+               method: 'PUT',
+               url: API_URL + '/subjects/' + id + '.json',
+               data: {
+                  subject: obj
+               }
+            }).then(function (promise) {
+               resolve(promise.data);
+            }, function (reason) {
+               reject(reason);
+            });
+         });
+      }
+
+      function deleteSubject(id) {
+         return $q(function (resolve, reject) {
+            $http({
+               method: 'DELETE',
+               url: API_URL + '/subjects/' + id + '.json'
+            }).then(function (promise) {
+               resolve(promise.data);
+            }, function (reason) {
+               reject(reason);
+            });
+         });
+      }
+
+      function calcNotes(subject) {
+         return $q(function (resolve, reject) {
+            console.log('subject');
+            console.log(subject);
+            var exam1 = parseFloat(subject.exam_1) || 0,
+                exam2 = parseFloat(subject.exam_2) || 0,
+                exam3 = parseFloat(subject.exam_3) || 0;
+
+            var result = ((exam1 + exam2 + exam3) / 3);
+
+            console.log('result');
+            console.log(result);
+
+            resolve(result);
+         });
+
       }
 
    }
