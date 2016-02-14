@@ -1,4 +1,4 @@
-describe('Controller: AppController', function () {
+xdescribe('Controller: AppController', function () {
 
    beforeEach(module('app'));
 
