@@ -24,8 +24,8 @@
       self.createSubject = createSubject;
       self.currentSubject = currentSubject;
       self.deleteSubject = deleteSubject;
-      self.calcNotes = calcNotes;
 
+      self.calcNotes = calcNotes;
       function createSubject() {
          if (self.subject.id) {
             subjectsFactory.updateSubject(self.subject, self.subject.id).then(function (response) {

@@ -1,6 +1,6 @@
 (function () {
    'use strict';
 
-   angular.module('app', ['ui.router', 'students', 'subjects']);
+   angular.module('app', ['ui.router', 'students', 'subjects', 'shared']);
 
 }());
