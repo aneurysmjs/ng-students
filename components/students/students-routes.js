@@ -6,7 +6,7 @@
    studentsRoutes.$inject = ['$stateProvider'];
 
    function studentsRoutes($stateProvider) {
-      //cuando el estado sea 's
+
       $stateProvider
          .state('students', {
             url: '/estudiantes', // definimos el nombre de la url dependiendo del estado
