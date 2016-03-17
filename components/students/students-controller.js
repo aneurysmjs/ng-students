@@ -1,40 +1,27 @@
 (function () {
    'use strict';
 
+   // usando el método 'controller()' creamos un controlador
    angular.module('students').controller('StudentsController', StudentsController);
 
-   StudentsController.$inject = ['studentsFactory'];
+   // $inject es una anotación de dependencias a la hora de minificar nuestro código
+   StudentsController.$inject = [];
 
-   function StudentsController(studentsFactory) {
+   function StudentsController() {
+
       var self = this;
 
-      self.curPage = 0;
-      self.pageSize = 5;
-      self.searchFor = '';
-
-     init();
-
-      function init() {
-         studentsFactory.retrieveData().then(function (response) {
-            console.log(' self.students');
-            console.log( self.students);
-            self.students = response;
-         }, function (error) {
-
-         });
-      }
-
-      self.deleteStudent = deleteStudent ;
-      self.numberOfPages = numberOfPages;
-
-      function deleteStudent(student) {
-         var index = self.students.indexOf(student);
-         self.students.splice(index, 1);
-      }
-
-      function numberOfPages() {
-         return Math.ceil(self.students.length / self.pageSize);
-      }
+      self.students = [
+         {
+            "id":1,
+            "gender":"Female",
+            "first_name":"Barbara",
+            "last_name":"Brooks",
+            "email":"bbrooks0@sitemeter.com",
+            "job_title":"Staff Scientist",
+            "grade":"-0.37"
+         }
+      ];
 
    }
 

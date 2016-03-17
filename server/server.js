@@ -15,10 +15,9 @@ app.use(bodyParser.urlencoded({                 // pull information from html in
 app.use(methodOverride()); 					      // simulate DELETE and PUT
 app.use(cors());                                // enable CORS
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
    res.header("Access-Control-Allow-Origin", "*");
    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  // res.header("Jero says", "Fuck you!!");
    next();
 });
 
@@ -107,7 +106,7 @@ app.get('/', function (req, res) {
    res.render('index', {});
 });
 
-app.post('/upload', function(req, res) {
+app.post('/upload', function (req, res) {
    console.log('/upload');
    //console.log(req);
    console.log(res);

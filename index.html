@@ -21,8 +21,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
                <ul class="nav navbar-nav">
                   <li><a href="#">Home</a></li>
-                  <li><a ui-sref="students">Estudiantes</a></li>
-                  <li><a ui-sref="subjects">Asignaturas</a></li>
+                  <li><a href ui-sref="students">Estudiantes</a></li>
                </ul>
             </div>
          </div>
@@ -30,27 +29,18 @@
    </div>
 </div>
 
-<ui-view></ui-view>
+<ui-view>
+   <h2>Bienvenidos</h2>
+</ui-view>
 
 <script src="node_modules/angular/angular.js"></script>
 <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="components/app.js"></script>
-<script src="components/app-constants.js"></script>
 <script src="components/app-controller.js"></script>
-<script src="components/app-factory.js"></script>
-
-<script src="components/shared/shader-module.js"></script>
-<script src="components/shared/filters/pagination-filter.js"></script>
 
 <script src="components/students/students.js"></script>
 <script src="components/students/students-routes.js"></script>
 <script src="components/students/students-controller.js"></script>
-<script src="components/students/students-factory.js"></script>
-
-<script src="components/subjects/subjects.js"></script>
-<script src="components/subjects/subjects-routes.js"></script>
-<script src="components/subjects/subjects-controller.js"></script>
-<script src="components/subjects/subjects-factory.js"></script>
 
 
 </body>

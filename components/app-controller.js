@@ -3,9 +3,9 @@
 
    angular.module('app').controller('AppController', AppController);
 
-   AppController.$inject = ['appFactory'];
+   AppController.$inject = [];
 
-   function AppController(appFactory) {
+   function AppController() {
       var self = this;
 
    }
