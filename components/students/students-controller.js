@@ -5,35 +5,24 @@
    angular.module('students').controller('StudentsController', StudentsController);
 
    // $inject es una anotación de dependencias a la hora de minificar nuestro código
-   StudentsController.$inject = [];
+   StudentsController.$inject = ['studentsFactory'];
 
-   function StudentsController() {
+   function StudentsController(studentsFactory) {
 
       var self = this;
 
       self.osito = 'bubbu';
 
+      self.student = {};
 
-      self.students = [
-         {
-            "id":1,
-            "gender":"Female",
-            "first_name":"Barbara",
-            "last_name":"Brooks",
-            "email":"bbrooks0@sitemeter.com",
-            "job_title":"Staff Scientist",
-            "grade":"-0.37"
-         },
-         {
-            "id":2,
-            "gender":"Male",
-            "first_name":"Martha",
-            "last_name":"Gómes",
-            "email":"martha@gomez.com",
-            "job_title":"publicista",
-            "grade":"5"
-         }
-      ];
+
+      //self.notes = [1,2,3,4,5,6,7,8,9,10,11,12];
+
+      console.log('studentsFactory');
+      console.log(studentsFactory);
+
+
+      self.students = studentsFactory.getStudents();
 
 
       self.salude = salude;
@@ -43,8 +32,12 @@
 
       }
 
-      function enviar(firts_name, last_name) {
-         console.log('me has enviado tio');
+      function enviar() {
+
+
+         self.student.id = self.students.length;
+
+         self.students.push(self.student);
       }
 
 
