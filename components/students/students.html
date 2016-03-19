@@ -1,4 +1,26 @@
 <section>
+
+   <h1>closure</h1>
+
+
+
+   <form name="studentsForm" ng-submit="studentsCtrl.enviar()">
+      <input type="text" ng-model="studentsCtrl.firts_name">
+      <input type="text" ng-model="studentsCtrl.last_name">
+
+      <button type="submit"
+              class="btn btn-large btn-block btn-primary">
+         enviar
+      </button>
+   </form>
+
+
+   <pre>{{studentsCtrl.firts_name | json}}</pre>
+   <pre>{{studentsCtrl.last_name | json}}</pre>
+
+
+
+
    <table class="table table-hover">
       <thead>
       <tr>
