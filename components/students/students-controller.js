@@ -5,11 +5,16 @@
    angular.module('students').controller('StudentsController', StudentsController);
 
    // $inject es una anotación de dependencias a la hora de minificar nuestro código
-   StudentsController.$inject = ['studentsFactory'];
+   StudentsController.$inject = ['studentsFactory', 'version'];
 
-   function StudentsController(studentsFactory) {
+   function StudentsController(studentsFactory, version) {
+
+      console.log('version');
+      console.log(version);
 
       var self = this;
+
+      self.version = version;
 
       self.osito = 'bubbu';
 
