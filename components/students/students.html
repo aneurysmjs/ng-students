@@ -1,0 +1,96 @@
+<section>
+
+   <h1>closure</h1>
+
+
+
+   <form name="studentsForm" ng-submit="studentsCtrl.enviar()">
+      <input type="text"
+             name="firts_name"
+             required
+             ng-model="studentsCtrl.student.firts_name">
+
+      <input type="text"
+             name="last_name"
+             ng-model="studentsCtrl.student.last_name">
+
+      <input type="email"
+             name="studentEmail"
+             placeholder="email"
+             ng-model="studentsCtrl.student.email">
+
+      <span ng-if="studentsForm.studentEmail.$error.email">
+         email inválido
+      </span>
+
+      <input type="text"
+             name="job_title"
+             ng-model="studentsCtrl.student.job_title">
+
+      <input type="text"
+             name="gender"
+             ng-model="studentsCtrl.student.gender">
+
+      <button type="submit"
+              class="btn btn-large btn-block btn-primary"
+              ng-disabled="studentsForm.$invalid">
+         enviar
+      </button>
+   </form>
+
+
+
+   <!--<pre>{{studentsForm | json}}</pre>-->
+
+
+
+
+   <table class="table table-hover">
+      <thead>
+      <tr>
+         <th>$index</th>
+         <th>Id</th>
+         <th>Nombres</th>
+         <th>Apellidos</th>
+         <th>Género</th>
+         <th>Email</th>
+         <th>Profesión</th>
+         <th>Nota</th>
+         <th>&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="student in studentsCtrl.students track by $index">
+         <th>{{$index}}</th>
+         <th>{{student.id}}</th>
+         <td>{{student.first_name}}</td>
+         <td>{{student.last_name}}</td>
+         <td>{{student.gender}}</td>
+         <td>{{student.email}}</td>
+         <td>{{student.job_title}}</td>
+         <td>{{student.grade}}</td>
+         <td>
+            <span class="fui-new"></span>
+            <span class="fui-cross"></span>
+         </td>
+      </tr>
+
+      </tbody>
+   </table>
+
+   <!--<div ng-repeat="note in studentsCtrl.notes">
+      <div>First Element: {{$first}}</div>
+      <div>Middle Element: {{$middle}}</div>
+      <div>Last Element: {{$last}}</div>
+      <div>Index of Element: {{$index}}</div>
+      <div>At Even Position: {{$even}}</div>
+      <div>At Odd Position: {{$odd}}</div>
+
+      <br/><br/>
+   </div>-->
+
+   <footer>
+      esta es la versión:  {{studentsCtrl.version}}
+   </footer>
+
+</section>

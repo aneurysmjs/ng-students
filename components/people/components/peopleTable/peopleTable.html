@@ -1,0 +1,32 @@
+<table class="table table-hover">
+   <thead>
+   <tr>
+      <th>$index</th>
+      <th>Id</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Género</th>
+      <th>Email</th>
+      <th>Profesión</th>
+      <th>Nota</th>
+      <th>&nbsp;</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr ng-repeat="people in peopleCtrl.people track by $index">
+      <th>{{$index}}</th>
+      <th>{{people.id}}</th>
+      <td>{{people.first_name}}</td>
+      <td>{{people.last_name}}</td>
+      <td>{{people.gender}}</td>
+      <td>{{people.email}}</td>
+      <td>{{people.job_title}}</td>
+      <td>{{people.grade}}</td>
+      <td>
+         <span class="fui-new"></span>
+         <span class="fui-cross"></span>
+      </td>
+   </tr>
+
+   </tbody>
+</table>
