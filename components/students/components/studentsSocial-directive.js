@@ -14,11 +14,7 @@
       };
 
       function link(scope, element, attrs) {
-         console.log('scope');
-         console.log(scope);
 
-         console.log('element');
-         console.log(element);
          element.on('click', function (e) {
 
          })

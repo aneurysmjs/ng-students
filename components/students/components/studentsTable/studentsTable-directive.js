@@ -8,10 +8,25 @@
    function studentsTable(componentRoute) {
 
       return {
-         scope: true,
+         scope: {},
+         controller: [function StudentsTableController() {
+            var self  = this;
+
+            console.log('self');
+            console.log(self);
+         }],
+         controllerAs: 'ctrl',
+         bindToController: {
+            studentsList: '='
+         },
          restrict: 'E',
-         templateUrl: componentRoute + 'studentsTable/studentsTable.html'
+         templateUrl: componentRoute + 'studentsTable/studentsTable.html',
+         link: link
       };
+
+      function link(scope) {
+
+      }
 
 
    }
