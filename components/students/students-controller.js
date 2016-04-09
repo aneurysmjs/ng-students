@@ -10,7 +10,14 @@
 
       var self = this;
 
-      self.students = studentsFactory.getStudents();
+      //self.students = studentsFactory.getStudents();
+      studentsFactory.getStudents().then(function (result) {
+         self.students = result;
+      });
+      
+      console.log('self.students');
+      console.log(self.students);
+
 
    }
 

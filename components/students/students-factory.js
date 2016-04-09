@@ -4,9 +4,9 @@
    // así como 'controller()' crea controladores, usamos factory()' para crear una fábrica
    angular.module('students').factory('studentsFactory', studentsFactory);
 
-   studentsFactory.$inject = [];
+   studentsFactory.$inject = ['$q', '$http'];
 
-   function studentsFactory() {
+   function studentsFactory($q, $http) {
 
       var students = [
          {
@@ -26,7 +26,21 @@
       };
 
       function getStudents() {
-         return students;
+        /* var deferred = $q.defer();
+
+         deferred.resolve(students);
+
+         return deferred.promise;*/
+
+         return $q(function (resolve, reject) {
+
+            $http.get('server/MOCK_DATA.json').then(function (response) {
+               console.log('response');
+               console.log(response);
+               resolve(response.data);
+            });
+            //resolve(students);
+         });
       }
 
    }
