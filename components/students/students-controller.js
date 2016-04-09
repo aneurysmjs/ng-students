@@ -12,11 +12,18 @@
 
       //self.students = studentsFactory.getStudents();
       studentsFactory.getStudents().then(function (result) {
-         self.students = result;
+          return result.data;
+      }).then(function (students) {
+         self.students = students;
       });
       
-      console.log('self.students');
-      console.log(self.students);
+      self.deleteStudent = deleteStudent;
+      
+      function deleteStudent(student) {
+         var index = self.students.indexOf(student);
+         self.students.splice(index, 1);
+      }
+
 
 
    }

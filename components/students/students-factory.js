@@ -34,10 +34,8 @@
 
          return $q(function (resolve, reject) {
 
-            $http.get('server/MOCK_DATA.json').then(function (response) {
-               console.log('response');
-               console.log(response);
-               resolve(response.data);
+            $http.get('server/uao.json').then(function (response) {
+               resolve(response);
             });
             //resolve(students);
          });
