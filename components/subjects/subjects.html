@@ -1,0 +1,101 @@
+
+
+<h3 ng-if="!subjectsCtrl.updating">Crear Asignatura</h3>
+<h3 ng-if="subjectsCtrl.updating">Editar Asignatura</h3>
+
+<div class="row">
+   <div class="col-md-6">
+      <form class="form-inline" novalidate>
+         <div class="form-group">
+            <label class="sr-only" for="name">Asignatura</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   ng-model="subjectsCtrl.subject.subject_name"
+                   placeholder="Asignatura">
+
+         </div>
+         <div class="form-group">
+            <label class="sr-only" for="exam_1">Examen 1</label>
+            <input type="text"
+                   class="form-control"
+                   id="exam_1"
+                   ng-model="subjectsCtrl.subject.exam_1"
+                   ng-change="subjectsCtrl.calcNotes(subjectsCtrl.subject)"
+                   placeholder="Examen 1">
+         </div>
+         <div class="form-group">
+            <label class="sr-only" for="exam_2">Examen 2</label>
+            <input type="text"
+                   class="form-control"
+                   id="exam_2"
+                   ng-model="subjectsCtrl.subject.exam_2"
+                   ng-change="subjectsCtrl.calcNotes(subjectsCtrl.subject)"
+                   placeholder="Examen 2">
+         </div>
+
+         <div class="form-group">
+            <label class="sr-only" for="exam_3">Examen 3</label>
+            <input type="text"
+                   class="form-control"
+                   id="exam_3"
+                   ng-model="subjectsCtrl.subject.exam_3"
+                   ng-change="subjectsCtrl.calcNotes(subjectsCtrl.subject)"
+                   placeholder="Examen 3">
+         </div>
+         <div class="form-group">
+            <label class="sr-only" for="average">Promedio</label>
+            <input type="text"
+                   class="form-control"
+                   id="average"
+                   ng-model="subjectsCtrl.subject.exam_average"
+                   disabled
+                   placeholder="Examen 3">
+         </div>
+         <textarea class="form-control"
+                   ng-model="subjectsCtrl.subject.subject_description"
+                   rows="3">
+         </textarea>
+         <button type="submit"
+                 class="btn btn-primary"
+                 ng-click="subjectsCtrl.createSubject()">Crear</button>
+         <button type="reset"
+                 class="btn btn-primary">Limpiar</button>
+      </form>
+   </div>
+   <div class="col-md-6"></div>
+</div>
+<hr>
+
+<p class="animated fadeInDown"
+   ng-if="subjectsCtrl.notification"
+   ng-bind="subjectsCtrl.notification"></p>
+
+<table class="table table-hover">
+   <thead>
+   <tr>
+      <th>Id</th>
+      <th>Materia</th>
+      <th>Examen 1</th>
+      <th>Examen 2</th>
+      <th>Examen 3</th>
+      <th>Promedio</th>
+      <th>&nbsp;</th>
+   </tr>
+   </thead>
+   <tbody>
+      <tr ng-repeat="subject in subjectsCtrl.subjects track by $index"
+          ng-click="subjectsCtrl.currentSubject(subject)">
+         <th scope="row">{{subject.id}}</th>
+         <td>{{subject.subject_name}}</td>
+         <td>{{subject.exam_1}}</td>
+         <td>{{subject.exam_2}}</td>
+         <td>{{subject.exam_3}}</td>
+         <td>{{subject.exam_average}}</td>
+         <td>
+            <span class="fui-new"></span>
+            <span class="fui-cross" ng-click="subjectsCtrl.deleteSubject(subject)"></span>
+         </td>
+      </tr>
+   </tbody>
+</table>

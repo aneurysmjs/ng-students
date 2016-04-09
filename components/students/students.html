@@ -1,0 +1,78 @@
+<section>
+   <form class="form-inline">
+      <div class="form-group">
+         <label for="pageSize">Número de Estudiantes</label>
+         <input type="text"
+                id="pageSize"
+                class="form-control"
+                ng-model="studentsCtrl.pageSize"
+                placeholder="0">
+      </div>
+      <div class="form-group">
+         <label for="searchFor">Filtrar</label>
+         <input type="text"
+                id="searchFor"
+                class="form-control"
+                ng-model="studentsCtrl.searchFor"
+                placeholder="Jane Doe">
+      </div>
+
+   </form>
+   <table class="table table-hover">
+      <thead>
+      <tr>
+         <th>Id</th>
+         <th>First Name</th>
+         <th>Last Name</th>
+         <th>Gender</th>
+         <th>Email</th>
+         <th>Job Title</th>
+         <th>Grade</th>
+         <th>&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="student in studentsCtrl.students |
+                  pagination: studentsCtrl.curPage * studentsCtrl.pageSize |
+                  limitTo: studentsCtrl.pageSize |
+                  filter: studentsCtrl.searchFor:strict">
+         <th scope="row">{{student.id}}</th>
+         <td>{{student.first_name}}</td>
+         <td>{{student.last_name}}</td>
+         <td>{{student.gender}}</td>
+         <td>{{student.email}}</td>
+         <td>{{student.job_title}}</td>
+         <td>{{student.grade}}</td>
+         <td>
+            <span class="fui-new"></span>
+            <span class="fui-cross" ng-click="studentsCtrl.deleteStudent(student)"></span>
+         </td>
+      </tr>
+
+      </tbody>
+   </table>
+
+   <div class="pagination pagination-centered" ng-show="studentsCtrl.students.length">
+      <ul class="pagination-controle pagination">
+         <li>
+            <button type="button"
+                    class="btn btn-primary"
+                    ng-disabled="studentsCtrl.curPage == 0"
+                    ng-click="studentsCtrl.curPage = studentsCtrl.curPage-1">
+               &lt; PREV
+            </button>
+         </li>
+         <li>
+            <span>Page {{studentsCtrl.curPage + 1}} of {{ studentsCtrl.numberOfPages() }}</span>
+         </li>
+         <li>
+            <button type="button"
+                    class="btn btn-primary"
+                    ng-disabled="studentsCtrl.curPage >= studentsCtrl.students.length / studentsCtrl.pageSize - 1"
+                    ng-click="studentsCtrl.curPage = studentsCtrl.curPage+1">
+               NEXT &gt;
+            </button>
+         </li>
+      </ul>
+   </div>
+</section>
