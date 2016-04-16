@@ -78,33 +78,7 @@
    ng-if="subjectsCtrl.notification"
    ng-bind="subjectsCtrl.notification"></p>
 
-<table class="table table-hover">
-   <thead>
-   <tr>
-      <th>Id</th>
-      <th>Materia</th>
-      <th>Profesor</th>
-      <th>Examen 1</th>
-      <th>Examen 2</th>
-      <th>Examen 3</th>
-      <th>Promedio</th>
-      <th>&nbsp;</th>
-   </tr>
-   </thead>
-   <tbody>
-      <tr ng-repeat="subject in subjectsCtrl.subjects track by $index"
-          ng-click="subjectsCtrl.currentSubject(subject)">
-         <th scope="row">{{subject.id}}</th>
-         <td>{{subject.subject_name}}</td>
-         <td>{{subject.teacher_name}}</td>
-         <td>{{subject.exam_1}}</td>
-         <td>{{subject.exam_2}}</td>
-         <td>{{subject.exam_3}}</td>
-         <td>{{subject.exam_average}}</td>
-         <td>
-            <span class="fui-new"></span>
-            <span class="fui-cross" ng-click="subjectsCtrl.deleteSubject(subject)"></span>
-         </td>
-      </tr>
-   </tbody>
-</table>
+<subjects-table subjects="subjectsCtrl.subjects"
+                delete-subject="subjectsCtrl.deleteSubject"
+                current-subject="subjectsCtrl.currentSubject">
+</subjects-table>

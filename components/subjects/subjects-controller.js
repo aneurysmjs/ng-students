@@ -49,9 +49,10 @@ function SubjectsController(subjectsFactory, $timeout) {
       self.updating = true;
    }
 
-   function deleteSubject(student) {
-      var index = self.subjects.indexOf(student);
-      subjectsFactory.deleteSubject(student.id).then(function (response) {
+   function deleteSubject(subject) {
+
+      var index = self.subjects.indexOf(subject);
+      subjectsFactory.deleteSubject(subject.id).then(function (response) {
          self.subject = {};
          self.notification = response.notification;
          $timeout(function () {

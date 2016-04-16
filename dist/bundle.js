@@ -35326,9 +35326,13 @@
 
 	var _subjectsFactory2 = _interopRequireDefault(_subjectsFactory);
 
+	var _subjectsTableComponent = __webpack_require__(20);
+
+	var _subjectsTableComponent2 = _interopRequireDefault(_subjectsTableComponent);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var subjectsModule = _angular2.default.module('subjects', []).config(_subjectsRoutes2.default).component('subjects', _subjectsComponent2.default).controller('SubjectsController', _subjectsController2.default).factory('subjectsFactory', _subjectsFactory2.default);
+	var subjectsModule = _angular2.default.module('subjects', []).config(_subjectsRoutes2.default).component('subjects', _subjectsComponent2.default).component('subjectsTable', _subjectsTableComponent2.default).controller('SubjectsController', _subjectsController2.default).factory('subjectsFactory', _subjectsFactory2.default);
 
 	exports.default = subjectsModule;
 
@@ -35379,7 +35383,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 ng-if=\"!subjectsCtrl.updating\">Crear Asignatura</h3>\n<h3 ng-if=\"subjectsCtrl.updating\">Editar Asignatura</h3>\n\n<div class=\"row\">\n   <div class=\"col-md-6\">\n      <form class=\"form-inline\" novalidate>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"name\">Profesor</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"teacher_name\"\n                   ng-model=\"subjectsCtrl.subject.teacher_name\"\n                   placeholder=\"Profesor\">\n\n         </div>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"name\">Asignatura</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"name\"\n                   ng-model=\"subjectsCtrl.subject.subject_name\"\n                   placeholder=\"Asignatura\">\n\n         </div>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"exam_1\">Examen 1</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"exam_1\"\n                   ng-model=\"subjectsCtrl.subject.exam_1\"\n                   ng-change=\"subjectsCtrl.calcNotes(subjectsCtrl.subject)\"\n                   placeholder=\"Examen 1\">\n         </div>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"exam_2\">Examen 2</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"exam_2\"\n                   ng-model=\"subjectsCtrl.subject.exam_2\"\n                   ng-change=\"subjectsCtrl.calcNotes(subjectsCtrl.subject)\"\n                   placeholder=\"Examen 2\">\n         </div>\n\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"exam_3\">Examen 3</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"exam_3\"\n                   ng-model=\"subjectsCtrl.subject.exam_3\"\n                   ng-change=\"subjectsCtrl.calcNotes(subjectsCtrl.subject)\"\n                   placeholder=\"Examen 3\">\n         </div>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"average\">Promedio</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"average\"\n                   ng-model=\"subjectsCtrl.subject.exam_average\"\n                   disabled\n                   placeholder=\"Promedio\">\n         </div>\n         <textarea class=\"form-control\"\n                   ng-model=\"subjectsCtrl.subject.subject_description\"\n                   rows=\"3\">\n         </textarea>\n         <button type=\"submit\"\n                 class=\"btn btn-primary\"\n                 ng-click=\"subjectsCtrl.createSubject()\">Crear</button>\n         <button type=\"reset\"\n                 class=\"btn btn-primary\">Limpiar</button>\n      </form>\n   </div>\n   <div class=\"col-md-6\"></div>\n</div>\n<hr>\n\n<p class=\"animated fadeInDown\"\n   ng-if=\"subjectsCtrl.notification\"\n   ng-bind=\"subjectsCtrl.notification\"></p>\n\n<table class=\"table table-hover\">\n   <thead>\n   <tr>\n      <th>Id</th>\n      <th>Materia</th>\n      <th>Profesor</th>\n      <th>Examen 1</th>\n      <th>Examen 2</th>\n      <th>Examen 3</th>\n      <th>Promedio</th>\n      <th>&nbsp;</th>\n   </tr>\n   </thead>\n   <tbody>\n      <tr ng-repeat=\"subject in subjectsCtrl.subjects track by $index\"\n          ng-click=\"subjectsCtrl.currentSubject(subject)\">\n         <th scope=\"row\">{{subject.id}}</th>\n         <td>{{subject.subject_name}}</td>\n         <td>{{subject.teacher_name}}</td>\n         <td>{{subject.exam_1}}</td>\n         <td>{{subject.exam_2}}</td>\n         <td>{{subject.exam_3}}</td>\n         <td>{{subject.exam_average}}</td>\n         <td>\n            <span class=\"fui-new\"></span>\n            <span class=\"fui-cross\" ng-click=\"subjectsCtrl.deleteSubject(subject)\"></span>\n         </td>\n      </tr>\n   </tbody>\n</table>";
+	module.exports = "<h3 ng-if=\"!subjectsCtrl.updating\">Crear Asignatura</h3>\n<h3 ng-if=\"subjectsCtrl.updating\">Editar Asignatura</h3>\n\n<div class=\"row\">\n   <div class=\"col-md-6\">\n      <form class=\"form-inline\" novalidate>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"name\">Profesor</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"teacher_name\"\n                   ng-model=\"subjectsCtrl.subject.teacher_name\"\n                   placeholder=\"Profesor\">\n\n         </div>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"name\">Asignatura</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"name\"\n                   ng-model=\"subjectsCtrl.subject.subject_name\"\n                   placeholder=\"Asignatura\">\n\n         </div>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"exam_1\">Examen 1</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"exam_1\"\n                   ng-model=\"subjectsCtrl.subject.exam_1\"\n                   ng-change=\"subjectsCtrl.calcNotes(subjectsCtrl.subject)\"\n                   placeholder=\"Examen 1\">\n         </div>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"exam_2\">Examen 2</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"exam_2\"\n                   ng-model=\"subjectsCtrl.subject.exam_2\"\n                   ng-change=\"subjectsCtrl.calcNotes(subjectsCtrl.subject)\"\n                   placeholder=\"Examen 2\">\n         </div>\n\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"exam_3\">Examen 3</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"exam_3\"\n                   ng-model=\"subjectsCtrl.subject.exam_3\"\n                   ng-change=\"subjectsCtrl.calcNotes(subjectsCtrl.subject)\"\n                   placeholder=\"Examen 3\">\n         </div>\n         <div class=\"form-group\">\n            <label class=\"sr-only\" for=\"average\">Promedio</label>\n            <input type=\"text\"\n                   class=\"form-control\"\n                   id=\"average\"\n                   ng-model=\"subjectsCtrl.subject.exam_average\"\n                   disabled\n                   placeholder=\"Promedio\">\n         </div>\n         <textarea class=\"form-control\"\n                   ng-model=\"subjectsCtrl.subject.subject_description\"\n                   rows=\"3\">\n         </textarea>\n         <button type=\"submit\"\n                 class=\"btn btn-primary\"\n                 ng-click=\"subjectsCtrl.createSubject()\">Crear</button>\n         <button type=\"reset\"\n                 class=\"btn btn-primary\">Limpiar</button>\n      </form>\n   </div>\n   <div class=\"col-md-6\"></div>\n</div>\n<hr>\n\n<p class=\"animated fadeInDown\"\n   ng-if=\"subjectsCtrl.notification\"\n   ng-bind=\"subjectsCtrl.notification\"></p>\n\n<subjects-table subjects=\"subjectsCtrl.subjects\"\n                delete-subject=\"subjectsCtrl.deleteSubject\"\n                current-subject=\"subjectsCtrl.currentSubject\">\n</subjects-table>";
 
 /***/ },
 /* 18 */
@@ -35438,9 +35442,10 @@
 	      self.updating = true;
 	   }
 
-	   function deleteSubject(student) {
-	      var index = self.subjects.indexOf(student);
-	      subjectsFactory.deleteSubject(student.id).then(function (response) {
+	   function deleteSubject(subject) {
+
+	      var index = self.subjects.indexOf(subject);
+	      subjectsFactory.deleteSubject(subject.id).then(function (response) {
 	         self.subject = {};
 	         self.notification = response.notification;
 	         $timeout(function () {
@@ -35573,6 +35578,63 @@
 	}
 
 	exports.default = subjectsFactory;
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+
+	var _subjectsTable = __webpack_require__(21);
+
+	var _subjectsTable2 = _interopRequireDefault(_subjectsTable);
+
+	var _subjectsTableController = __webpack_require__(22);
+
+	var _subjectsTableController2 = _interopRequireDefault(_subjectsTableController);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var subjectsComponent = {
+	   template: _subjectsTable2.default,
+	   controller: _subjectsTableController2.default,
+	   bindings: {
+	      currentSubject: '&',
+	      deleteSubject: '&',
+	      subjects: '='
+	   }
+	};
+
+	exports.default = subjectsComponent;
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	module.exports = "<table class=\"table table-hover\">\n   <thead>\n   <tr>\n      <th>Id</th>\n      <th>Materia</th>\n      <th>Profesor</th>\n      <th>Examen 1</th>\n      <th>Examen 2</th>\n      <th>Examen 3</th>\n      <th>Promedio</th>\n      <th>&nbsp;</th>\n   </tr>\n   </thead>\n   <tbody>\n   <tr ng-repeat=\"subject in $ctrl.subjects track by $index\"\n       ng-click=\"$ctrl.currentSubject()(subject)\">\n      <th scope=\"row\">{{subject.id}}</th>\n      <td>{{subject.subject_name}}</td>\n      <td>{{subject.teacher_name}}</td>\n      <td>{{subject.exam_1}}</td>\n      <td>{{subject.exam_2}}</td>\n      <td>{{subject.exam_3}}</td>\n      <td>{{subject.exam_average}}</td>\n      <td>\n         <span class=\"fui-new\"></span>\n         <span class=\"fui-cross\" ng-click=\"$ctrl.deleteSubject()(subject)\"></span>\n      </td>\n   </tr>\n   </tbody>\n</table>";
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+	SubjectsTableController.$inject = [];
+
+	function SubjectsTableController() {
+	   'use strict';
+
+	   var self = this;
+	}
+
+	exports.default = SubjectsTableController;
 
 /***/ }
 /******/ ]);
