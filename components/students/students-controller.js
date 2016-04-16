@@ -4,13 +4,16 @@
    angular.module('students').controller('StudentsController', StudentsController);
 
    // para usar una fábrica siemplemente la inyectamos
-   StudentsController.$inject = ['studentsFactory', 'students'];
+   StudentsController.$inject = ['studentsFactory'];
 
-   function StudentsController(studentsFactory, students) {
+   function StudentsController(studentsFactory) {
 
       var self = this;
+      
+      console.log('self');
+      console.log(self);
 
-     self.students = students;
+     //self.students = students;
       
       self.deleteStudent = deleteStudent;
       
