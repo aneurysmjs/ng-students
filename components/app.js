@@ -16,7 +16,7 @@ angular.module('app', [
       shared.name,
       subjects.name
    ])
-   .constant('API_URL', 'http://172.16.129.76:3000/api/v1')
+   .constant('API_URL', 'http://172.16.129.72:3000/api/v1')
    .controller('AppController', AppController)
    .factory('appFactory', appFactory);
 

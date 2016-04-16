@@ -83,7 +83,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_angular2.default.module('app', [_angularUiRouter2.default, _students2.default.name, _shaderModule2.default.name, _subjects2.default.name]).constant('API_URL', 'http://172.16.129.76:3000/api/v1').controller('AppController', _appController2.default).factory('appFactory', _appFactory2.default);
+	_angular2.default.module('app', [_angularUiRouter2.default, _students2.default.name, _shaderModule2.default.name, _subjects2.default.name]).constant('API_URL', 'http://172.16.129.72:3000/api/v1').controller('AppController', _appController2.default).factory('appFactory', _appFactory2.default);
 
 /***/ },
 /* 2 */
@@ -34342,8 +34342,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	   value: true
 	});
-
-
 	AppController.$inject = ['appFactory'];
 
 	function AppController(appFactory) {
