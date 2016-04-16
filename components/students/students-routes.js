@@ -1,7 +1,5 @@
 import template from './students.html';
 
-console.log('template');
-console.log(template);
 
 studentsRoutes.$inject = ['$stateProvider'];
 

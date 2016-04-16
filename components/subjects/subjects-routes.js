@@ -3,9 +3,7 @@ subjectsRoutes.$inject = ['$stateProvider'];
 function subjectsRoutes($stateProvider) {
    $stateProvider
       .state('subjects', {
-         templateUrl: 'components/subjects/subjects.html',
-         controller: 'SubjectsController',
-         controllerAs: 'subjectsCtrl'
+         template: '<subjects></subjects>'
       });
 }
 
