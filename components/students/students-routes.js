@@ -12,7 +12,14 @@
             url: '/estudiantes', // definimos el nombre de la url dependiendo del estado
             templateUrl: 'components/students/students.html', // use 'students.html' como plantilla
             controller: 'StudentsController', // asignamos 'StudentsController' a la plantilla
-            controllerAs: 'studentsCtrl' // alias de nuestro controlador
+            controllerAs: 'studentsCtrl', // alias de nuestro controlador
+            resolve: {
+               students: ['studentsFactory', function (studentsFactory) {
+                  return studentsFactory.getStudents().then(function (result) {
+                     return result.data;
+                  });
+               }]
+            }
          });
    }
 

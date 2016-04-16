@@ -20,13 +20,8 @@
             studentsList: '='
          },
          restrict: 'E',
-         templateUrl: componentRoute + 'studentsTable/studentsTable.html',
-         link: link
+         templateUrl: componentRoute + 'studentsTable/studentsTable.html'
       };
-
-      function link(scope) {
-
-      }
 
 
    }
