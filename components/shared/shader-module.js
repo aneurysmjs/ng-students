@@ -1,6 +1,8 @@
-(function () {
-   'use strict';
+import angular from 'angular';
 
-   angular.module('shared', []);
+import pagination from './filters/pagination-filter'
 
-}());
+  let shared = angular.module('shared', [])
+   .filter('pagination', pagination);
+
+export default shared;

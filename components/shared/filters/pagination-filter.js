@@ -1,7 +1,4 @@
-(function () {
-   'use strict';
 
-   angular.module('shared').filter('pagination', pagination);
 
    pagination.$inject = [];
 
@@ -12,4 +9,4 @@
       };
    }
 
-}());
+   export default pagination;

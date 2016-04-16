@@ -6,20 +6,20 @@ let path = require('path'),
 module.exports = {
    context: __dirname,
    entry: [
-      './client/app/app.js'
+      './components/app.js'
    ],
    output: {
       path: path.resolve(__dirname, './dist'),
       filename: 'bundle.js'
    },
    module: {
-      preLoaders: [
+      /*preLoaders: [
          {
             test: /\.js$/,
             exclude: /node_modules/, // exclude any and all files in the node_modules folder
             loader: 'jshint-loader'
          }
-      ],
+      ],*/
       loaders: [
          {
             test: /\.js$/,

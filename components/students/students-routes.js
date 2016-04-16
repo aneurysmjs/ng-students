@@ -1,17 +1,17 @@
-(function () {
-   'use strict';
+import template from './students.html';
 
-   angular.module('students').config(studentsRoutes);
+console.log('template');
+console.log(template);
 
-   studentsRoutes.$inject = ['$stateProvider'];
+studentsRoutes.$inject = ['$stateProvider'];
 
-   function studentsRoutes($stateProvider) {
-      $stateProvider
-         .state('students', {
-            templateUrl: 'components/students/students.html',
-            controller: 'StudentsController',
-            controllerAs: 'studentsCtrl'
-         });
-   }
+function studentsRoutes($stateProvider) {
+   $stateProvider
+      .state('students', {
+         template,
+         controller: 'StudentsController',
+         controllerAs: 'studentsCtrl'
+      });
+}
 
-}());
+export default studentsRoutes;
