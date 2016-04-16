@@ -2,6 +2,7 @@
    'use strict';
 
    var studentsTable = {
+      transclude: true,
       controller: [function StudentsTableController() {
          var self  = this;
          console.log('self');
