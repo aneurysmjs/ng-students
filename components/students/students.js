@@ -1,7 +1,5 @@
 import angular from 'angular';
 
-
-
 import studentsRoutes from './students-routes';
 import StudentsController from './students-controller';
 import studentsFactory from './students-factory';

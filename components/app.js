@@ -7,9 +7,15 @@ import AppController from './app-controller';
 import appFactory from './app-factory';
 
 import students from './students/students';
+import subjects from './subjects/subjects';
 
 
-angular.module('app', [uiRouter, students.name, shared.name])
+angular.module('app', [
+      uiRouter,
+      students.name,
+      shared.name,
+      subjects.name
+   ])
    .constant('API_URL', 'http://172.16.129.76:3000/api/v1')
    .controller('AppController', AppController)
    .factory('appFactory', appFactory);

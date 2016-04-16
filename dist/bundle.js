@@ -77,9 +77,13 @@
 
 	var _students2 = _interopRequireDefault(_students);
 
+	var _subjects = __webpack_require__(14);
+
+	var _subjects2 = _interopRequireDefault(_subjects);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_angular2.default.module('app', [_angularUiRouter2.default, _students2.default.name, _shaderModule2.default.name]).constant('API_URL', 'http://172.16.129.76:3000/api/v1').controller('AppController', _appController2.default).factory('appFactory', _appFactory2.default);
+	_angular2.default.module('app', [_angularUiRouter2.default, _students2.default.name, _shaderModule2.default.name, _subjects2.default.name]).constant('API_URL', 'http://172.16.129.76:3000/api/v1').controller('AppController', _appController2.default).factory('appFactory', _appFactory2.default);
 
 /***/ },
 /* 2 */
@@ -34525,6 +34529,252 @@
 	}
 
 	exports.default = studentsFactory;
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+
+	var _angular = __webpack_require__(2);
+
+	var _angular2 = _interopRequireDefault(_angular);
+
+	var _subjectsRoutes = __webpack_require__(15);
+
+	var _subjectsRoutes2 = _interopRequireDefault(_subjectsRoutes);
+
+	var _subjectsController = __webpack_require__(16);
+
+	var _subjectsController2 = _interopRequireDefault(_subjectsController);
+
+	var _subjectsFactory = __webpack_require__(17);
+
+	var _subjectsFactory2 = _interopRequireDefault(_subjectsFactory);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var subjectsModule = _angular2.default.module('subjects', []).config(_subjectsRoutes2.default).controller('SubjectsController', _subjectsController2.default).factory('subjectsFactory', _subjectsFactory2.default);
+
+	exports.default = subjectsModule;
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+	subjectsRoutes.$inject = ['$stateProvider'];
+
+	function subjectsRoutes($stateProvider) {
+	   $stateProvider.state('subjects', {
+	      templateUrl: 'components/subjects/subjects.html',
+	      controller: 'SubjectsController',
+	      controllerAs: 'subjectsCtrl'
+	   });
+	}
+
+	exports.default = subjectsRoutes;
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+	SubjectsController.$inject = ['subjectsFactory', '$timeout'];
+
+	function SubjectsController(subjectsFactory, $timeout) {
+	   var self = this;
+
+	   self.subject = {};
+	   self.updating = false;
+
+	   init();
+
+	   function init() {
+	      subjectsFactory.retrieveSubjects().then(function (response) {
+	         self.subjects = response;
+	      }, function (error) {});
+	   }
+
+	   self.createSubject = createSubject;
+	   self.currentSubject = currentSubject;
+	   self.deleteSubject = deleteSubject;
+
+	   self.calcNotes = calcNotes;
+	   function createSubject() {
+	      if (self.subject.id) {
+	         subjectsFactory.updateSubject(self.subject, self.subject.id).then(function (response) {
+	            init();
+	            self.notification = response.notification;
+	            self.subject = {};
+	            $timeout(function () {
+	               self.notification = null;
+	            }, 1300);
+	         }, errorHandler);
+	      } else {
+	         subjectsFactory.createSubject(self.subject).then(function (response) {
+	            init();
+	            self.notification = response.notification;
+	            $timeout(function () {
+	               self.notification = null;
+	            }, 1300);
+	         }, errorHandler);
+	         self.updating = false;
+	      }
+	   }
+
+	   function currentSubject(subject) {
+	      self.subject = subject;
+	      self.updating = true;
+	   }
+
+	   function deleteSubject(student) {
+	      var index = self.subjects.indexOf(student);
+	      subjectsFactory.deleteSubject(student.id).then(function (response) {
+	         self.subject = {};
+	         self.notification = response.notification;
+	         $timeout(function () {
+	            self.notification = null;
+	         }, 1300);
+	         self.subjects.splice(index, 1);
+	      }, errorHandler);
+	   }
+
+	   function calcNotes(subject) {
+	      subjectsFactory.calcNotes(subject).then(function (result) {
+	         self.subject.exam_average = result;
+	      });
+	   }
+
+	   function errorHandler(error) {
+	      self.error = error;
+	   }
+	}
+
+	exports.default = SubjectsController;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+	subjectsFactory.$inject = ['API_URL', '$http', '$q'];
+
+	function subjectsFactory(API_URL, $http, $q) {
+
+	   return {
+	      createSubject: createSubject,
+	      retrieveSubject: retrieveSubject,
+	      retrieveSubjects: retrieveSubjects,
+	      updateSubject: updateSubject,
+	      deleteSubject: deleteSubject,
+	      calcNotes: calcNotes
+	   };
+
+	   function createSubject(obj) {
+	      return $q(function (resolve, reject) {
+	         $http({
+	            method: 'POST',
+	            url: API_URL + '/subjects',
+	            data: {
+	               subject: obj
+	            }
+	         }).then(function (promise) {
+	            resolve(promise.data);
+	         }, function (reason) {
+	            reject(reason);
+	         });
+	      });
+	   }
+
+	   function retrieveSubject(id) {
+	      return $q(function (resolve, reject) {
+	         $http({
+	            method: 'GET',
+	            url: API_URL + '/subjects' + id + '.json'
+	         }).then(function (promise) {
+	            resolve(promise.data);
+	         }, function (reason) {
+	            reject(reason);
+	         });
+	      });
+	   }
+
+	   function retrieveSubjects() {
+	      return $q(function (resolve, reject) {
+	         $http({
+	            method: 'GET',
+	            url: API_URL + '/subjects.json'
+	         }).then(function (promise) {
+	            resolve(promise.data);
+	         }, function (reason) {
+	            reject(reason);
+	         });
+	      });
+	   }
+
+	   function updateSubject(obj, id) {
+	      return $q(function (resolve, reject) {
+	         $http({
+	            method: 'PUT',
+	            url: API_URL + '/subjects/' + id + '.json',
+	            data: {
+	               subject: obj
+	            }
+	         }).then(function (promise) {
+	            resolve(promise.data);
+	         }, function (reason) {
+	            reject(reason);
+	         });
+	      });
+	   }
+
+	   function deleteSubject(id) {
+	      return $q(function (resolve, reject) {
+	         $http({
+	            method: 'DELETE',
+	            url: API_URL + '/subjects/' + id + '.json'
+	         }).then(function (promise) {
+	            resolve(promise.data);
+	         }, function (reason) {
+	            reject(reason);
+	         });
+	      });
+	   }
+
+	   function calcNotes(subject) {
+	      return $q(function (resolve, reject) {
+	         var exam1 = parseFloat(subject.exam_1) || 0,
+	             exam2 = parseFloat(subject.exam_2) || 0,
+	             exam3 = parseFloat(subject.exam_3) || 0;
+
+	         var result = (exam1 + exam2 + exam3) / 3;
+
+	         console.log('result');
+	         console.log(result);
+
+	         resolve(result);
+	      });
+	   }
+	}
+
+	exports.default = subjectsFactory;
 
 /***/ }
 /******/ ]);

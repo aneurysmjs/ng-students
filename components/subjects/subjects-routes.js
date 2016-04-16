@@ -1,17 +1,12 @@
-(function () {
-   'use strict';
+subjectsRoutes.$inject = ['$stateProvider'];
 
-   angular.module('subjects').config(subjectsRoutes);
+function subjectsRoutes($stateProvider) {
+   $stateProvider
+      .state('subjects', {
+         templateUrl: 'components/subjects/subjects.html',
+         controller: 'SubjectsController',
+         controllerAs: 'subjectsCtrl'
+      });
+}
 
-   subjectsRoutes.$inject = ['$stateProvider'];
-
-   function subjectsRoutes($stateProvider) {
-      $stateProvider
-         .state('subjects', {
-            templateUrl: 'components/subjects/subjects.html',
-            controller: 'SubjectsController',
-            controllerAs: 'subjectsCtrl'
-         });
-   }
-
-}());
+export default subjectsRoutes;
