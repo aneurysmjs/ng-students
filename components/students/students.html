@@ -3,6 +3,8 @@
    <h1>closure</h1>
 
 
+   <pre>{{studentsCtrl.student | json}}</pre>
+
 
    <form name="studentsForm" ng-submit="studentsCtrl.enviar()">
       <input type="text"
@@ -36,11 +38,18 @@
               ng-disabled="studentsForm.$invalid">
          enviar
       </button>
+
+      <button type="button"
+              class="btn btn-large btn-block btn-primary"
+              ng-click="studentsCtrl.salude('texto arbitratio')">
+         salude
+      </button>
    </form>
 
 
-
-   <pre>{{studentsForm | json}}</pre>
+<div>Nombre: {{ studentsCtrl.nombre }}</div>
+<div>numero: {{ studentsCtrl.numero }}</div>
+   <!--<pre>{{studentsForm | json}}</pre>-->
 
 
 

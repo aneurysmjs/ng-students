@@ -11,32 +11,34 @@
 
       var self = this;
 
-      self.osito = 'bubbu';
+      self.nombre = 'jero';
+
+      self.edad = 89;
 
       self.student = {};
 
-
-      //self.notes = [1,2,3,4,5,6,7,8,9,10,11,12];
-
-      console.log('studentsFactory');
-      console.log(studentsFactory);
+      var numero = 78;
 
 
-      self.students = studentsFactory.getStudents();
+
+      studentsFactory.getStudents().then(function (promise) {
+         self.students = promise;
+      });
 
 
       self.salude = salude;
       self.enviar = enviar;
 
-      function salude(texto) {
+      function privada() {
+         console.log(self.edad);
+      }
 
+      function salude(texto) {
+         privada();
       }
 
       function enviar() {
-
-
          self.student.id = self.students.length;
-
          self.students.push(self.student);
       }
 

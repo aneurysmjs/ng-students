@@ -13,31 +13,18 @@
    angular.module('students').factory('studentsFactory', studentsFactory);
 
 
-   studentsFactory.$inject = [];
+   studentsFactory.$inject = ['$http'];
 
-   function studentsFactory() {
-
-      var students =  [
-         {
-            "id":1,
-            "gender":"Female",
-            "first_name":"Barbara",
-            "last_name":"Brooks",
-            "email":"bbrooks0@sitemeter.com",
-            "job_title":"Staff Scientist",
-            "grade":"-0.37"
-         }
-      ];
+   function studentsFactory($http) {
 
       return {
-         name: 'fábrica',
-         getStudents: getStudents
+         getStudents: function getStudents() {
+            return $http.get('server/MOCK_DATA.json').then(function (response) {
+               return response.data;
+            });
+         }
 
       };
-
-      function getStudents() {
-         return students;
-      }
 
    }
 
